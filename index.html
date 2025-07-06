@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Asuman Abla Ne Zamandır Demir 4?</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #3a3a3a, #1e1e1e);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .counter {
+      display: flex;
+      gap: 20px;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    .box {
+      background: #444;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .label {
+      font-size: 0.6em;
+      font-weight: normal;
+      color: #ccc;
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Asuman Abla Ne Zamandır Demir 4?</h1>
+  <div class="counter">
+    <div class="box">
+      <span id="days">00</span>
+      <span class="label">Gün</span>
+    </div>
+    <div class="box">
+      <span id="hours">00</span>
+      <span class="label">Saat</span>
+    </div>
+    <div class="box">
+      <span id="minutes">00</span>
+      <span class="label">Dakika</span>
+    </div>
+    <div class="box">
+      <span id="seconds">00</span>
+      <span class="label">Saniye</span>
+    </div>
+  </div>
+
+  <script>
+    // 1 hafta önceki zamanı al (şu an - 7 gün)
+    const startTime = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startTime;
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      document.getElementById("days").textContent = days.toString().padStart(2, '0');
+      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
